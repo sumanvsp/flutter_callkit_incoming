@@ -353,9 +353,9 @@ class CallkitIncomingActivity : Activity() {
             TransparentActivity.getIntent(this, CallkitConstants.ACTION_CALL_ACCEPT, data)
         startActivity(acceptIntent)
 
-        // No keyguard dismiss: it asked the user to unlock on a locked
-        // Answer and held the accept until they did. A call is answered
-        // from the lock screen with no unlock, as the system dialer does.
+        // No keyguard dismiss: on a locked Answer it asked the user to
+        // unlock. The call is answered from the lock screen with no unlock;
+        // the app shows after the user unlocks.
         finish()
     }
 

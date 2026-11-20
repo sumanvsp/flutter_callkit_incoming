@@ -25,7 +25,8 @@ import androidx.annotation.RequiresApi
  *  1. [CallkitConnectionService.onCreateIncomingConnection] returns a
  *     ringing Connection instance.
  *  2. User taps Accept in our notification → plugin's BroadcastReceiver maps the
- *     broadcast to the matching connection via [find] and calls [setActive].
+ *     broadcast to the matching connection via [find] and records the accept.
+ *     [setActive] waits for the app's CONNECTED ([markConnected]).
  *  3. User taps Decline / End → [setDisconnected] + [destroy] → unregister.
  *
  * Connection lookup uses a process-wide registry keyed by the call id
