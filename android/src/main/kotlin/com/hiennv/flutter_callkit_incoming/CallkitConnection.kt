@@ -184,11 +184,17 @@ class CallkitConnection(
         return true
     }
 
-    /** Mark the call as answered — user accepted via app notification. */
+    /**
+     * Mark the call as answered - user accepted via app notification.
+     *
+     * Not setActive() here: the app has not connected the call yet. Active at
+     * Accept made Telecom treat a killed app's call as live for the 9 to 13 s
+     * the app needs to start and receive the invite. The app reports the
+     * connected leg (ACTION_CALL_CONNECTED), and markConnected sets it active.
+     */
     fun markAccepted() {
         recordHistory("accepted")
         Log.d(TAG, "markAccepted id=$callId")
-        setActive()
     }
 
     fun markConnected() {
